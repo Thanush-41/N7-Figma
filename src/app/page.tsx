@@ -23,13 +23,13 @@ export default function HomePage() {
         body="CB7 helps your financial institution improve the client experience, automate procedures and ensure full regulatory compliance — without the legacy paperwork."
       />
       <N7Mobile />
-      <PaperlessCTA
-        brand="N7"
-        title="A digital banking experience customers will love."
-        body="Launch a modern digital bank in weeks, not years. N7 ships with the building blocks you need to delight customers from day one."
-      />
       <Insights />
       <CaseStudies />
+      <PaperlessCTA
+        brand="N7"
+        title="Take the full advantage of going paper-less now."
+        body="CB7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations."
+      />
       <Footer />
     </main>
   );

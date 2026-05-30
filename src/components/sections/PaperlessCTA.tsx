@@ -9,6 +9,8 @@ type Props = {
 };
 
 export default function PaperlessCTA({ brand = 'CB7', title, body }: Props) {
+  const isN7 = brand === 'N7';
+
   return (
     <section className="relative overflow-hidden bg-[#000d12] py-20 text-[#E9F4F9]">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
@@ -17,21 +19,25 @@ export default function PaperlessCTA({ brand = 'CB7', title, body }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#0a1a22]/60 px-10 py-16 md:px-16 lg:px-20"
+          className={`relative overflow-hidden ${
+            isN7 ? 'py-8' : 'rounded-[24px] border border-white/10 bg-[#0a1a22]/60 px-10 py-16 md:px-16 lg:px-20'
+          }`}
         >
           {/* Giant outlined brand text in background */}
-          <div className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 select-none md:block">
-            <span
-              className="text-[240px] font-medium leading-none lg:text-[340px]"
-              style={{
-                fontFamily: 'Archivo, Inter, sans-serif',
-                WebkitTextStroke: '1.5px rgba(0,180,253,0.25)',
-                color: 'transparent',
-              }}
-            >
-              {brand}
-            </span>
-          </div>
+          {!isN7 && (
+            <div className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 select-none md:block">
+              <span
+                className="text-[240px] font-medium leading-none lg:text-[340px]"
+                style={{
+                  fontFamily: 'Archivo, Inter, sans-serif',
+                  WebkitTextStroke: '1.5px rgba(0,180,253,0.25)',
+                  color: 'transparent',
+                }}
+              >
+                {brand}
+              </span>
+            </div>
+          )}
 
           {/* Content: split layout */}
           <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">

@@ -3,21 +3,29 @@
 const offices = [
   {
     city: 'London',
-    line1: 'Linktia Infosystems Ltd.',
-    line2: '128 City Road, London',
-    line3: 'EC1V 2NX, United Kingdom',
+    lines: [
+      'Linktia Infosystems Ltd – CB7,',
+      '26 Main Road Sundridge,TN14 6EP,',
+      'England, United Kingdom.',
+    ],
   },
   {
     city: 'Dubai',
-    line1: 'Linktia FZE',
-    line2: 'Dubai Silicon Oasis',
-    line3: 'DDP, Building A2, Dubai',
+    lines: [
+      'Linktia Infosystems Ltd –',
+      'CB7,Jumeirah Business, Center 5',
+      'Cluster W, Jumeirah Lakes Towers,',
+      'Dubai, United Arab Emirates',
+    ],
   },
   {
-    city: 'Pune',
-    line1: 'Linktia Infosystems Pvt.',
-    line2: 'Magarpatta City, Hadapsar',
-    line3: 'Pune 411013, India',
+    city: 'London',
+    lines: [
+      'Linktia Infosystems Ltd –',
+      'CB7,Nirmal, Anand Nagar,',
+      'Suncity Road, Pune,',
+      'Maharashtra, 411041, India',
+    ],
   },
 ];
 
@@ -32,106 +40,114 @@ const solutions = [
 
 const company = ['About Us', 'Solutions', 'Contact', 'Company', 'Careers', 'Insights', 'Core Team', 'Brand Center'];
 
+function ArrowIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" className="shrink-0 opacity-50">
+      <path d="M3 7h8M7 3l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
     <footer id="contact" className="relative bg-[#000d12] pt-20 text-[#E9F4F9]">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-16 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_0.8fr]">
-          <div className="flex flex-col gap-6">
+        {/* Top section: Giant N7 left + Offices right */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[auto_1fr]">
+          {/* Giant N7 gradient text */}
+          <div className="pointer-events-none select-none">
             <span
-              className="text-3xl font-semibold"
-              style={{ fontFamily: 'Archivo, Inter, sans-serif' }}
+              className="text-[220px] font-bold leading-[0.85] tracking-tight sm:text-[300px]"
+              style={{
+                fontFamily: 'Archivo, Inter, sans-serif',
+                background: 'linear-gradient(180deg, #00B4FD 0%, #003ACE 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
             >
-              N7<span className="text-[#00B4FD]">.</span>
+              N7
             </span>
-            <div className="flex flex-col gap-6 sm:flex-row sm:gap-10">
-              {offices.map((o) => (
-                <div key={o.city} className="flex flex-col gap-1">
-                  <span className="text-[13px] font-semibold uppercase tracking-wider text-[#00B4FD]">
+          </div>
+
+          {/* Right side content */}
+          <div className="flex flex-col">
+            {/* Offices row */}
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+              {offices.map((o, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  <span className="text-[14px] font-semibold text-[#E9F4F9]">
                     {o.city}
                   </span>
-                  <span className="text-[13px] text-[#E9F4F9]/70">{o.line1}</span>
-                  <span className="text-[13px] text-[#E9F4F9]/70">{o.line2}</span>
-                  <span className="text-[13px] text-[#E9F4F9]/70">{o.line3}</span>
+                  {o.lines.map((line, j) => (
+                    <span key={j} className="text-[13px] leading-relaxed text-[#E9F4F9]/60">{line}</span>
+                  ))}
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="flex flex-col gap-4">
-            <span className="text-[13px] font-semibold uppercase tracking-wider text-[#E9F4F9]">
-              Solutions
-            </span>
-            <ul className="flex flex-col gap-2">
-              {solutions.map((s) => (
-                <li key={s}>
-                  <a href="#" className="text-[14px] text-[#E9F4F9]/70 transition hover:text-[#00B4FD]">
-                    {s}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Links grid */}
+            <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-3">
+              <div className="flex flex-col gap-4">
+                <span className="text-[14px] font-semibold text-[#E9F4F9]">
+                  Solutions
+                </span>
+                <ul className="flex flex-col gap-3">
+                  {solutions.map((s) => (
+                    <li key={s}>
+                      <a href="#" className="flex items-center justify-between text-[13px] text-[#E9F4F9]/60 transition hover:text-[#00B4FD]">
+                        {s}
+                        <ArrowIcon />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <div className="flex flex-col gap-4">
-            <span className="text-[13px] font-semibold uppercase tracking-wider text-[#E9F4F9]">
-              N7 Banking
-            </span>
-            <ul className="flex flex-col gap-2">
-              {company.map((s) => (
-                <li key={s}>
-                  <a href="#" className="text-[14px] text-[#E9F4F9]/70 transition hover:text-[#00B4FD]">
-                    {s}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <div className="flex flex-col gap-4">
+                <span className="text-[14px] font-semibold text-[#E9F4F9]">
+                  N7 Banking
+                </span>
+                <ul className="flex flex-col gap-3">
+                  {company.map((s) => (
+                    <li key={s}>
+                      <a href="#" className="flex items-center justify-between text-[13px] text-[#E9F4F9]/60 transition hover:text-[#00B4FD]">
+                        {s}
+                        <ArrowIcon />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <div className="flex flex-col gap-4">
-            <span className="text-[13px] font-semibold uppercase tracking-wider text-[#E9F4F9]">
-              Our Socials
-            </span>
-            <div className="flex gap-3">
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-[#00B4FD] hover:text-[#00B4FD]"
-              >
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8h4.55v14H.22V8zm7.37 0h4.36v1.91h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.45H17.4v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.71-2.54 3.49V22H8.32V8h-.73z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                aria-label="X"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-[#00B4FD] hover:text-[#00B4FD]"
-              >
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                  <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.844l-5.36-7.012L4.5 22H1.243l8.026-9.17L1 2h7.012l4.84 6.39L18.244 2zm-1.2 18h1.86L7.04 4H5.07l11.974 16z" />
-                </svg>
-              </a>
+              <div className="flex flex-col gap-4">
+                <span className="text-[14px] font-semibold text-[#E9F4F9]">
+                  Our Socials
+                </span>
+                <ul className="flex flex-col gap-3">
+                  <li>
+                    <a href="#" className="flex items-center justify-between text-[13px] text-[#E9F4F9]/60 transition hover:text-[#00B4FD]">
+                      LinkedIn
+                      <ArrowIcon />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="flex items-center justify-between text-[13px] text-[#E9F4F9]/60 transition hover:text-[#00B4FD]">
+                      X
+                      <ArrowIcon />
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <a
-              href="#contact"
-              className="mt-4 inline-flex w-fit items-center justify-center rounded-[10px] px-8 py-3 text-[12px] uppercase tracking-wider text-white shadow-lg shadow-[#003ACE]/30 transition hover:scale-[1.02]"
-              style={{
-                backgroundImage:
-                  'linear-gradient(141.82deg, #00B4FD 5.68%, #003ACE 86.97%)',
-                fontFamily: '"Chivo Mono", ui-monospace, monospace',
-              }}
-            >
-              Contact Us
-            </a>
           </div>
         </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 py-8 text-[12px] text-[#E9F4F9]/50 sm:flex-row sm:items-center">
-          <span>© 2022 by Linktia Infosystems Limited. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#" className="transition hover:text-[#00B4FD]">Privacy Policy</a>
-            <a href="#" className="transition hover:text-[#00B4FD]">Terms of Service</a>
-          </div>
+        {/* Copyright */}
+        <div className="mt-16 border-t border-white/10 py-8">
+          <p className="text-[11px] leading-relaxed text-[#E9F4F9]/40">
+            Copyright © 2022 by Linktia Infosystems Limited — [CB7 and N7 as Commercial Brand] — [Registered under the Companies Act 2006 in England and Wales | Number of Incorporation 13100992]
+          </p>
         </div>
       </div>
     </footer>
