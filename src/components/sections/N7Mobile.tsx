@@ -2,67 +2,120 @@
 
 import { motion } from 'framer-motion';
 
-type Phone = {
-  title: string;
-  body: string;
-  side: 'left' | 'right';
-  screen: React.ReactNode;
-};
+/* ─── Marquee Ticker ─── */
+function Marquee() {
+  const items = ['N7', '✦', 'Say', '👋', 'to the new way of banking', '✦', 'CB7', '✦', 'Say', '👋', 'to the new way of banking'];
+  const row = items.map((t, i) => (
+    <span
+      key={i}
+      className={`mx-4 whitespace-nowrap text-[28px] font-medium tracking-tight sm:text-[36px] ${
+        t === 'N7' || t === 'CB7' ? 'text-[#00B4FD]' : 'text-[#1B1B1B]'
+      }`}
+      style={{ fontFamily: 'Archivo, Inter, sans-serif' }}
+    >
+      {t}
+    </span>
+  ));
 
+  return (
+    <div className="relative w-full overflow-hidden border-y border-[#E5E5E5] bg-white py-5">
+      <div className="flex animate-[scroll_20s_linear_infinite] whitespace-nowrap">
+        {row}
+        {row}
+      </div>
+      <style jsx>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Phone Frame ─── */
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-[542px] w-[268px] shrink-0 rounded-[44px] border-[10px] border-[#1A1F26] bg-[#0a0f14] shadow-[0_30px_60px_-20px_rgba(0,180,253,0.45)]">
+    <div className="relative mx-auto h-[560px] w-[280px] shrink-0 rounded-[44px] border-[10px] border-[#1A1F26] bg-white shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)]">
       <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-[#1A1F26]" />
       <div className="absolute inset-0 overflow-hidden rounded-[34px]">{children}</div>
     </div>
   );
 }
 
-function ScreenA() {
+/* ─── Screen: Main Banking App ─── */
+function MainScreen() {
   return (
-    <div className="flex h-full flex-col bg-gradient-to-b from-[#0b2d4a] to-[#0a0f14] p-4 pt-10 text-white">
-      <span className="text-[10px] opacity-70">Welcome back</span>
-      <span className="text-[15px] font-semibold">Toni Kross</span>
-      <div className="mt-3 rounded-xl bg-gradient-to-br from-[#00B4FD] to-[#003ACE] p-3">
-        <span className="text-[9px] opacity-80">Available balance</span>
-        <div className="text-[18px] font-semibold">$42,295.00</div>
-        <div className="mt-2 flex justify-between text-[9px] opacity-80">
-          <span>**** 4821</span>
-          <span>VISA</span>
+    <div className="flex h-full flex-col bg-white px-4 pt-10 text-[#1B1B1B]">
+      <div className="flex items-center gap-2">
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#00B4FD] to-[#003ACE]" />
+        <div>
+          <div className="text-[10px] font-semibold">Toni Kross</div>
+          <div className="text-[8px] text-[#1B1B1B]/60">Good Morning</div>
         </div>
+        <div className="ml-auto h-4 w-4 rounded-full bg-[#F3F4F6]" />
       </div>
-      <div className="mt-3 grid grid-cols-4 gap-1.5">
-        {['Send', 'Top up', 'Pay', 'More'].map((l) => (
-          <div key={l} className="flex flex-col items-center gap-1 rounded-lg bg-white/5 py-2">
-            <div className="h-5 w-5 rounded-full bg-[#00B4FD]/30" />
-            <span className="text-[8px]">{l}</span>
+      <div className="mt-3 text-[22px] font-semibold">$42,295.00 USD</div>
+      <div className="mt-3 grid grid-cols-4 gap-2">
+        {['Fund Transfer', 'Add Money', 'More', ''].slice(0, 3).map((l) => (
+          <div key={l} className="flex flex-col items-center gap-1">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F3F4F6]">
+              <div className="h-3.5 w-3.5 rounded-sm bg-[#D1D5DB]" />
+            </div>
+            <span className="text-[7px] text-[#1B1B1B]/70">{l}</span>
           </div>
         ))}
       </div>
-      <span className="mt-4 text-[10px] font-semibold">Transactions</span>
+      <div className="mt-4 text-[11px] font-semibold">Recent activity</div>
+      <div className="mt-1 flex gap-1">
+        {['This Day', 'This Week', 'This Month', '6 Month'].map((t, i) => (
+          <span
+            key={t}
+            className={`rounded px-1.5 py-0.5 text-[7px] ${i === 1 ? 'bg-[#00B4FD] text-white' : 'bg-[#F3F4F6] text-[#1B1B1B]/70'}`}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
       <div className="mt-2 flex flex-col gap-2">
         {[
-          ['Spotify', '-$9.99'],
-          ['Salary', '+$3,200'],
-          ['Uber', '-$14.20'],
-        ].map(([n, a]) => (
-          <div key={n} className="flex items-center justify-between rounded-lg bg-white/5 px-2 py-2 text-[10px]">
-            <span>{n}</span>
-            <span className={a.startsWith('+') ? 'text-emerald-400' : 'text-rose-300'}>{a}</span>
+          { name: 'To Jin', tag: 'Work', date: '12 jun 2022', amount: '-$59', color: '#9280FD' },
+          { name: 'From Google', tag: 'Salary', date: '10 jun 2022', amount: '+$859', color: '#FFD028' },
+          { name: 'To David', tag: 'Work', date: '7 jun 2022', amount: '-$479', color: '#9280FD' },
+          { name: 'From Google', tag: 'Bonus', date: '5 jun 2022', amount: '+$899', color: '#FFD028' },
+        ].map((t, i) => (
+          <div key={i} className="flex items-center gap-2 border-b border-[#F3F4F6] pb-1.5 last:border-0">
+            <div className="flex h-6 w-6 items-center justify-center rounded-md" style={{ background: t.color }}>
+              <span className="text-[8px] font-bold text-white">{t.name[0]}</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[8px] font-medium">{t.name} · <span className="opacity-60">{t.tag}</span></span>
+              <span className="text-[7px] text-[#1B1B1B]/50">{t.date}</span>
+            </div>
+            <span className={`ml-auto text-[9px] font-semibold ${t.amount.startsWith('+') ? 'text-emerald-600' : ''}`}>
+              {t.amount}
+            </span>
           </div>
+        ))}
+      </div>
+      <div className="mt-auto flex justify-around border-t border-[#F3F4F6] py-2 text-[7px] text-[#1B1B1B]/60">
+        {['Home', 'Card', 'Transaction', 'Profile'].map((l) => (
+          <span key={l}>{l}</span>
         ))}
       </div>
     </div>
   );
 }
-function ScreenB() {
+
+/* ─── Screen: Analytics ─── */
+function AnalyticsScreen() {
   return (
-    <div className="flex h-full flex-col bg-[#0a0f14] p-4 pt-10 text-white">
-      <span className="text-[10px] opacity-70">Insights</span>
-      <span className="text-[14px] font-semibold">Your spending</span>
-      <div className="mt-3 rounded-xl border border-white/10 p-3">
-        <div className="flex h-24 items-end gap-1.5">
-          {[40, 65, 30, 80, 55, 90, 45].map((h, i) => (
+    <div className="flex h-full flex-col bg-white px-4 pt-10 text-[#1B1B1B]">
+      <div className="text-[9px] text-[#1B1B1B]/60">March 2022</div>
+      <div className="text-[20px] font-semibold">$8,295.00 USD</div>
+      <div className="mt-3 rounded-xl border border-[#F3F4F6] p-3">
+        <div className="flex h-24 items-end gap-2">
+          {[45, 70, 35, 85, 60, 90, 50].map((h, i) => (
             <div
               key={i}
               className="flex-1 rounded-t bg-gradient-to-t from-[#003ACE] to-[#00B4FD]"
@@ -70,167 +123,151 @@ function ScreenB() {
             />
           ))}
         </div>
-        <div className="mt-2 flex justify-between text-[8px] opacity-60">
-          {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-            <span key={i}>{d}</span>
+        <div className="mt-2 flex justify-between text-[7px] text-[#1B1B1B]/50">
+          {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
+            <span key={m}>{m}</span>
           ))}
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        {[
-          ['Food', '$321'],
-          ['Travel', '$180'],
-          ['Bills', '$240'],
-          ['Fun', '$95'],
-        ].map(([k, v]) => (
-          <div key={k} className="rounded-lg bg-white/5 p-2">
-            <span className="text-[8px] opacity-60">{k}</span>
-            <div className="text-[12px] font-semibold">{v}</div>
-          </div>
-        ))}
+      <div className="mt-3 flex justify-between text-[10px]">
+        <span className="text-[#1B1B1B]/60">$453.00</span>
+        <span className="text-[#1B1B1B]/60">$453.00</span>
       </div>
-    </div>
-  );
-}
-function ScreenC() {
-  return (
-    <div className="flex h-full flex-col bg-[#0a0f14] p-4 pt-10 text-white">
-      <span className="text-[10px] opacity-70">Send money</span>
-      <span className="text-[14px] font-semibold">To a contact</span>
-      <div className="mt-3 flex gap-2 overflow-hidden">
-        {['JI', 'AK', 'LM', 'TR'].map((c, i) => (
-          <div
-            key={i}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#00B4FD] to-[#003ACE] text-[10px] font-bold"
+      <div className="mt-4 text-[11px] font-semibold">Recent activity</div>
+      <div className="mt-1 flex gap-1">
+        {['This Day', 'This Week', 'This Month', '6 Month'].map((t, i) => (
+          <span
+            key={t}
+            className={`rounded px-1.5 py-0.5 text-[7px] ${i === 1 ? 'bg-[#00B4FD] text-white' : 'bg-[#F3F4F6] text-[#1B1B1B]/70'}`}
           >
-            {c}
-          </div>
+            {t}
+          </span>
         ))}
       </div>
-      <div className="mt-4 rounded-xl bg-white/5 p-3">
-        <span className="text-[9px] opacity-60">Amount</span>
-        <div className="text-[22px] font-semibold">$1,250.00</div>
-        <div className="mt-1 text-[9px] opacity-60">From Main Account</div>
+      <div className="mt-auto flex justify-around border-t border-[#F3F4F6] py-2 text-[7px] text-[#1B1B1B]/60">
+        {['Home', 'Card', 'Transaction', 'Profile'].map((l) => (
+          <span key={l}>{l}</span>
+        ))}
       </div>
-      <div className="mt-3 rounded-xl border border-white/10 p-2 text-[10px]">
-        <div className="flex justify-between">
-          <span className="opacity-60">Fee</span>
-          <span>$0.00</span>
-        </div>
-        <div className="mt-1 flex justify-between">
-          <span className="opacity-60">Arrives</span>
-          <span>Instantly</span>
-        </div>
-      </div>
-      <button className="mt-auto rounded-lg bg-gradient-to-br from-[#00B4FD] to-[#003ACE] py-2 text-[11px] font-semibold">
-        Confirm
-      </button>
     </div>
   );
 }
 
-const phones: Phone[] = [
-  {
-    title: 'A complete banking experience in your pocket',
-    body: 'A modern, intuitive mobile banking app your customers will love — onboarding, payments and insights, all in one place.',
-    side: 'right',
-    screen: <ScreenA />,
-  },
-  {
-    title: 'Smart insights that help customers grow',
-    body: 'AI-powered budgeting, categorisation and savings tools that turn raw transactions into personal financial guidance.',
-    side: 'left',
-    screen: <ScreenB />,
-  },
-  {
-    title: 'Frictionless payments and transfers',
-    body: 'Instant peer-to-peer payments, scheduled transfers and international remittances — built on a real-time core.',
-    side: 'right',
-    screen: <ScreenC />,
-  },
-];
+/* ─── Check bullet ─── */
+function Check({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-2.5">
+      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00B4FD]">
+        <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M2.5 6.5l2.5 2.5 4.5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+      <span className="text-[14px] font-medium text-[#1B1B1B]">{children}</span>
+    </div>
+  );
+}
 
+/* ─── Main Section ─── */
 export default function N7Mobile() {
   return (
-    <section className="relative overflow-hidden bg-[#000d12] py-28 text-[#E9F4F9]">
-      <div className="pointer-events-none absolute inset-x-0 top-10 hidden select-none justify-center md:flex">
-        <span
-          className="text-[280px] font-medium leading-none lg:text-[440px]"
-          style={{
-            fontFamily: 'Archivo, Inter, sans-serif',
-            WebkitTextStroke: '1px rgba(0,180,253,0.3)',
-            color: 'transparent',
-          }}
-        >
-          N7
-        </span>
-      </div>
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
-        style={{
-          background:
-            'radial-gradient(closest-side, rgba(0,180,253,0.5), rgba(0,58,206,0.2), transparent 80%)',
-        }}
-      />
+    <section className="overflow-hidden">
+      {/* Marquee ticker */}
+      <Marquee />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-[760px] text-center"
-        >
-          <span
-            className="text-xs uppercase tracking-[0.3em] text-[#00B4FD]"
-            style={{ fontFamily: '"Chivo Mono", ui-monospace, monospace' }}
+      {/* White section */}
+      <div className="bg-white py-20 text-[#1B1B1B]">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
+          {/* First feature row */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_auto_1fr]"
           >
-            Digital Banking N7
-          </span>
-          <h2
-            className="mt-4 text-[36px] leading-[1.1] tracking-[-0.01em] sm:text-[52px]"
-            style={{ fontFamily: 'Archivo, Inter, sans-serif' }}
-          >
-            Digital banking out-of-the-box
-          </h2>
-        </motion.div>
-
-        <div className="mt-20 flex flex-col gap-28">
-          {phones.map((p, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6 }}
-              className={`flex flex-col items-center gap-12 lg:gap-20 ${
-                p.side === 'right' ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              }`}
-            >
-              <div className="flex-1">
-                <h3
-                  className="text-[28px] leading-[1.15] tracking-[-0.01em] sm:text-[36px]"
-                  style={{ fontFamily: 'Archivo, Inter, sans-serif' }}
-                >
-                  {p.title}
-                </h3>
-                <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#E9F4F9]/75">
-                  {p.body}
-                </p>
+            {/* Left text */}
+            <div className="flex flex-col gap-4">
+              <h2
+                className="text-[32px] leading-[1.1] tracking-[-0.01em] sm:text-[40px]"
+                style={{ fontFamily: 'Archivo, Inter, sans-serif' }}
+              >
+                Digital banking out-of-the-box
+              </h2>
+              <p className="max-w-[320px] text-[14px] leading-relaxed text-[#1B1B1B]/70">
+                N7 helps your financial institution improve the client experience, automate and optimize procedures
+              </p>
+              <div className="mt-2 flex flex-wrap items-center gap-4">
                 <a
                   href="#contact"
-                  className="mt-6 inline-flex items-center gap-2 text-[13px] uppercase tracking-wider text-[#00B4FD]"
-                  style={{ fontFamily: '"Chivo Mono", ui-monospace, monospace' }}
+                  className="inline-flex items-center justify-center rounded-[10px] px-8 py-3 text-[12px] uppercase tracking-wider text-white"
+                  style={{
+                    backgroundImage: 'linear-gradient(141.82deg, #00B4FD 5.68%, #003ACE 86.97%)',
+                    fontFamily: '"Chivo Mono", ui-monospace, monospace',
+                  }}
                 >
-                  learn more
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 7h8M7 3l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  Request Demo
                 </a>
               </div>
-              <PhoneFrame>{p.screen}</PhoneFrame>
-            </motion.div>
-          ))}
+              <a
+                href="#"
+                className="mt-1 inline-flex items-center gap-2 text-[12px] uppercase tracking-wider text-[#00B4FD]"
+                style={{ fontFamily: '"Chivo Mono", ui-monospace, monospace' }}
+              >
+                Learn More
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 7h8M7 3l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Phone center */}
+            <PhoneFrame>
+              <MainScreen />
+            </PhoneFrame>
+
+            {/* Right features */}
+            <div className="flex flex-col gap-5">
+              <h3 className="text-[18px] font-semibold leading-tight" style={{ fontFamily: 'Archivo, Inter, sans-serif' }}>
+                Fully compliant with regulatory requirement
+              </h3>
+              <p className="text-[13px] leading-relaxed text-[#1B1B1B]/70">
+                The governance of risk management with regulations is achieved by our risk management framework that is fully integrated to work with digital bank&apos;s operational-risk protocols and procedures.
+              </p>
+              <div className="mt-2 flex flex-col gap-3">
+                <Check>Pre-integrated Security System</Check>
+                <Check>Fully Compliant With Regulatory Requirement</Check>
+                <Check>Digitally Connected Core</Check>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Second feature row */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-28 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_auto]"
+          >
+            {/* Left text */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-[18px] font-semibold leading-tight" style={{ fontFamily: 'Archivo, Inter, sans-serif' }}>
+                No legacy IT systems
+              </h3>
+              <p className="max-w-[380px] text-[13px] leading-relaxed text-[#1B1B1B]/70">
+                Our Digital Banking solution and multilayered approach help financial institutions take advantage of digital transformation by ensuring customer trust and regulatory compliance.
+              </p>
+              <div className="mt-2 flex flex-col gap-3">
+                <Check>Adaptive &amp; Intelligent API monetization</Check>
+                <Check>Ambient User Experience</Check>
+              </div>
+            </div>
+
+            {/* Phone right */}
+            <PhoneFrame>
+              <AnalyticsScreen />
+            </PhoneFrame>
+          </motion.div>
         </div>
       </div>
     </section>

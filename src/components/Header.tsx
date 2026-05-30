@@ -25,8 +25,8 @@ export default function Header() {
       <div
         className={`flex w-full max-w-[716px] items-center justify-between rounded-full border px-6 py-3 transition-all duration-300 ${
           scrolled
-            ? 'border-white/10 bg-[#000d12]/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
-            : 'border-white/10 bg-[#0a1a22]/60 backdrop-blur-md'
+            ? 'border-white/10 bg-[#2F2F2F]/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+            : 'border-white/10 bg-[#2F2F2F]/70 backdrop-blur-md'
         }`}
       >
         <Link href="/" className="flex items-center text-[#E9F4F9]">
