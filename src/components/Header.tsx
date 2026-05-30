@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const nav = [
-  { label: 'solutions', href: '#solutions' },
-  { label: 'resources', href: '#insights' },
-  { label: 'About us', href: '#about' },
+  { label: 'SOLUTIONS', href: '#solutions', hasDropdown: true },
+  { label: 'RESOURCES', href: '#insights', hasDropdown: true },
+  { label: 'ABOUT US', href: '#about', hasDropdown: false },
 ];
 
 export default function Header() {
@@ -35,29 +35,32 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center md:flex" style={{ gap: '80px' }}>
           {nav.map((n) => (
             <a
               key={n.label}
               href={n.href}
-              className="group relative text-[13px] capitalize text-[#E9F4F9]/80 transition hover:text-[#E9F4F9]"
+              className="group relative flex items-center gap-1.5 text-[13px] tracking-[0.08em] text-[#E9F4F9]/80 transition hover:text-[#E9F4F9]"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               {n.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#00B4FD] transition-all duration-300 group-hover:w-full" />
+              {n.hasDropdown && (
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="opacity-60">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
             </a>
           ))}
         </nav>
 
         <a
           href="#contact"
-          className="hidden items-center justify-center rounded-full px-5 py-2 text-[11px] uppercase tracking-wider text-white transition hover:scale-[1.03] md:inline-flex"
+          className="hidden items-center justify-center rounded-full border border-white/40 px-5 py-2 text-[11px] uppercase tracking-[0.1em] text-white transition hover:border-white/70 hover:scale-[1.03] md:inline-flex"
           style={{
-            backgroundImage: 'linear-gradient(141.82deg, #00B4FD 5.68%, #003ACE 86.97%)',
             fontFamily: '"Chivo Mono", ui-monospace, monospace',
           }}
         >
-          Request Demo
+          REQUEST DEMO
         </a>
 
         <button
