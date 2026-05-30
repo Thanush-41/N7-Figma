@@ -19,16 +19,13 @@ function Marquee() {
 
   return (
     <div className="relative w-full overflow-hidden border-y border-[#E5E5E5] bg-white py-5">
-      <div className="flex animate-[scroll_20s_linear_infinite] whitespace-nowrap">
+      <div
+        className="flex whitespace-nowrap"
+        style={{ animation: 'marquee-scroll 20s linear infinite' }}
+      >
         {row}
         {row}
       </div>
-      <style jsx>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </div>
   );
 }

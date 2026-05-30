@@ -31,7 +31,7 @@ export default function Header() {
       >
         <Link href="/" className="flex items-center text-[#E9F4F9]">
           <span className="text-2xl font-semibold tracking-tight" style={{ fontFamily: 'Archivo, Inter, sans-serif' }}>
-            N7<span className="text-[#00B4FD]">.</span>
+            N7
           </span>
         </Link>
 
@@ -57,7 +57,7 @@ export default function Header() {
             fontFamily: '"Chivo Mono", ui-monospace, monospace',
           }}
         >
-          Contact Us
+          Request Demo
         </a>
 
         <button

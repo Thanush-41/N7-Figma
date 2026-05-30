@@ -22,3 +22,8 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-track { background: #000d12; }
 ::-webkit-scrollbar-thumb { background: rgba(0,180,253,0.25); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,180,253,0.45); }
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
