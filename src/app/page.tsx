@@ -20,10 +20,14 @@ export default function HomePage() {
       <PaperlessCTA
         brand="CB7"
         title="Take the full advantage of going paper-less now."
-        body="CB7 helps your financial institution improve the client experience, automate procedures and ensure full regulatory compliance — without the legacy paperwork."
+        body="N7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations."
       />
       <N7Mobile />
       <Insights />
+      {/* Dashed separator */}
+      <div className="mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
+        <div className="border-t border-dashed border-white/10" />
+      </div>
       <CaseStudies />
       <PaperlessCTA
         brand="N7"
