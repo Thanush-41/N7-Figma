@@ -4,12 +4,56 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const trustedBy = [
-  'SHELLS',
-  'SmartFinder',
-  'Zoomerr',
-  'ArtVenue',
-  'kontrastr',
-  'WAVESMARATHON',
+  {
+    name: 'SHELLS',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <circle cx="10" cy="10" r="7" />
+        <path d="M10 3c-2 3-2 6 0 7s2 4 0 7M3 10c3-2 6-2 7 0s4 2 7 0" />
+      </svg>
+    ),
+  },
+  {
+    name: 'SmartFinder',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+        <path d="M10 2L3 7v6l7 5 7-5V7l-7-5zm0 2.5L14.5 8v4L10 15.5 5.5 12V8L10 4.5z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Zoomerr',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+        <circle cx="10" cy="10" r="7" />
+        <path d="M7 10l2 2 4-4" stroke="#000d12" strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+  },
+  {
+    name: 'ArtVenue',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+        <path d="M2 16h16L14 6l-4 6-3-3-5 7z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'kontrastr',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 2v12a6 6 0 010-12z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'WAVESMARATHON',
+    icon: (
+      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+        <path d="M3 14l3-4 3 2 4-5 4 3v4H3z" />
+      </svg>
+    ),
+  },
 ];
 
 function ArrowUpRight({ className = '' }: { className?: string }) {
@@ -134,15 +178,16 @@ export default function Hero() {
 
           {/* Trusted by */}
           <div className="flex flex-col gap-4 pt-6">
-            <span className="text-sm capitalize text-[#E9F4F9]/70">trusted by:</span>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 opacity-90">
-              {trustedBy.map((name) => (
+            <span className="text-[13px] capitalize text-[#E9F4F9]/60">Trusted By:</span>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+              {trustedBy.map((b) => (
                 <span
-                  key={name}
-                  className="text-[14px] font-bold tracking-wide text-[#586E84]"
+                  key={b.name}
+                  className="inline-flex items-center gap-1.5 text-[13px] font-bold tracking-wide text-[#586E84]"
                   style={{ fontFamily: 'Roboto, Inter, sans-serif' }}
                 >
-                  {name}
+                  <span className="opacity-70">{b.icon}</span>
+                  {b.name}
                 </span>
               ))}
             </div>
@@ -154,10 +199,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-          className="relative mx-auto h-[400px] w-full max-w-[560px] sm:h-[460px]"
+          className="relative mx-auto h-[420px] w-full max-w-[580px] sm:h-[480px]"
         >
           {/* Image */}
-          <div className="absolute inset-y-0 left-4 right-32 overflow-hidden rounded-[31px] shadow-2xl sm:right-40">
+          <div className="absolute inset-y-4 left-8 right-24 overflow-hidden rounded-[31px] shadow-2xl sm:left-12 sm:right-28">
             <Image
               src="/images/hero-woman.png"
               alt="Customer using mobile banking"
@@ -172,7 +217,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute right-0 top-6 w-[210px] rounded-[14px] border border-white/20 bg-white/40 p-3 backdrop-blur-md shadow-[0_0_30px_8px_rgba(0,0,0,0.25)] sm:right-2"
+            className="absolute -right-4 top-2 w-[220px] rounded-[14px] border border-white/20 bg-white/90 p-3.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)] sm:-right-2 sm:top-4"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -191,25 +236,25 @@ export default function Hero() {
             <div className="my-2 h-px bg-[#1B1B1B]/10" />
             <div className="grid grid-cols-3 gap-1 text-center">
               {[
-                { label: 'Fund Transfer', glyph: '⇄' },
-                { label: 'Add Money', glyph: '$' },
-                { label: 'More', glyph: '⋯' },
+                { label: 'Fund Transfer', icon: <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="#1B1B1B" strokeWidth="1.5"><path d="M4 8h12M12 4l4 4-4 4M16 12H4M8 8l-4 4 4 4" /></svg> },
+                { label: 'Add Money', icon: <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="#1B1B1B" strokeWidth="1.5"><circle cx="10" cy="10" r="6" /><path d="M10 7v6M7 10h6" /></svg> },
+                { label: 'More', icon: <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="#1B1B1B" strokeWidth="1.5"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="11" y="3" width="6" height="6" rx="1" /><rect x="3" y="11" width="6" height="6" rx="1" /><rect x="11" y="11" width="6" height="6" rx="1" /></svg> },
               ].map((a) => (
                 <div key={a.label} className="flex flex-col items-center gap-1">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#FFD028]/80 text-[12px] font-bold text-[#1B1B1B]">
-                    {a.glyph}
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F3F4F6]">
+                    {a.icon}
                   </div>
-                  <span className="text-[8px] text-[#1B1B1B]">{a.label}</span>
+                  <span className="text-[8px] text-[#1B1B1B]/70">{a.label}</span>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Recent activity (bottom left) */}
+          {/* Recent activity (bottom-left, overlapping the photo) */}
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute bottom-0 left-0 w-[245px] rounded-[14px] border border-white/20 bg-white/40 p-3 backdrop-blur-md shadow-[0_0_30px_8px_rgba(0,0,0,0.25)] sm:left-6"
+            className="absolute -bottom-4 -left-4 w-[250px] rounded-[14px] border border-white/20 bg-white/90 p-3.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)] sm:bottom-4 sm:left-0"
           >
             <div className="mb-2 flex items-center justify-between">
               <span className="text-[11px] font-semibold text-[#1B1B1B]">Recent activity</span>
