@@ -150,6 +150,45 @@ function AnalyticsScreen() {
   );
 }
 
+/* ─── Screen: Profile ─── */
+function ProfileScreen() {
+  return (
+    <div className="flex h-full flex-col bg-white px-4 pt-10 text-[#1B1B1B]">
+      {/* Avatar + Name */}
+      <div className="flex flex-col items-center gap-2 pt-4">
+        <div className="h-16 w-16 rounded-full bg-[#E8EDF2]" />
+        <div className="text-center">
+          <div className="text-[13px] font-semibold">Toni Kross</div>
+        </div>
+      </div>
+      {/* Menu items */}
+      <div className="mt-6 flex flex-col gap-1">
+        {[
+          { icon: '👤', label: 'Profile setting' },
+          { icon: '💳', label: 'Pay' },
+          { icon: '✉️', label: 'Invite' },
+        ].map((item) => (
+          <div
+            key={item.label}
+            className="flex items-center gap-3 rounded-lg px-3 py-3 transition hover:bg-[#F3F4F6]"
+          >
+            <span className="text-[14px]">{item.icon}</span>
+            <span className="text-[11px] font-medium text-[#1B1B1B]/80">{item.label}</span>
+            <svg className="ml-auto h-3 w-3 text-[#1B1B1B]/40" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 2l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        ))}
+      </div>
+      <div className="mt-auto flex justify-around border-t border-[#F3F4F6] py-2 text-[7px] text-[#1B1B1B]/60">
+        {['Home', 'Card', 'Transaction', 'Profile'].map((l) => (
+          <span key={l}>{l}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Check bullet ─── */
 function Check({ children }: { children: React.ReactNode }) {
   return (
@@ -257,6 +296,7 @@ export default function N7Mobile() {
               <div className="mt-2 flex flex-col gap-3">
                 <Check>Adaptive &amp; Intelligent API monetization</Check>
                 <Check>Ambient User Experience</Check>
+                <Check>Cloud-native With lower TCO</Check>
               </div>
             </div>
 
@@ -264,6 +304,35 @@ export default function N7Mobile() {
             <PhoneFrame>
               <AnalyticsScreen />
             </PhoneFrame>
+          </motion.div>
+
+          {/* Third feature row */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-28 grid grid-cols-1 items-center gap-12 lg:grid-cols-[auto_1fr]"
+          >
+            {/* Phone left */}
+            <PhoneFrame>
+              <ProfileScreen />
+            </PhoneFrame>
+
+            {/* Right text */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-[18px] font-semibold leading-tight" style={{ fontFamily: 'Archivo, Inter, sans-serif' }}>
+                No traditional branches
+              </h3>
+              <p className="max-w-[380px] text-[13px] leading-relaxed text-[#1B1B1B]/70">
+                Our Digital Banking out-of-the-box helps you to accelerate timescale while reducing costs and optimizing operational control for a seamless, branchless experience.
+              </p>
+              <div className="mt-2 flex flex-col gap-3">
+                <Check>Branchless &amp; Paperless Banking</Check>
+                <Check>Digital Transformation Capability</Check>
+                <Check>Optimized, Adoptable and Scalable</Check>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
