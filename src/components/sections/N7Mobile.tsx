@@ -211,8 +211,69 @@ export default function N7Mobile() {
       <Marquee />
 
       {/* White section */}
-      <div className="bg-white py-20 text-[#1B1B1B]">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
+      <div className="relative bg-white py-20 text-[#1B1B1B]">
+        {/* Background geometric diamond outlines */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* Row 1 diamonds - centered around phone position */}
+          <svg
+            className="absolute left-1/2 top-[18%] -translate-x-1/2 -translate-y-1/2"
+            width="680"
+            height="680"
+            viewBox="0 0 680 680"
+            fill="none"
+          >
+            <path
+              d="M340 40 L640 340 L340 640 L40 340 Z"
+              stroke="#4B9FD4"
+              strokeWidth="1.5"
+              strokeOpacity="0.25"
+            />
+            <path
+              d="M340 120 L560 340 L340 560 L120 340 Z"
+              stroke="#4B9FD4"
+              strokeWidth="1.5"
+              strokeOpacity="0.20"
+            />
+          </svg>
+          {/* Row 2 diamonds - right side, lower */}
+          <svg
+            className="absolute right-[8%] top-[52%] -translate-y-1/2"
+            width="480"
+            height="480"
+            viewBox="0 0 480 480"
+            fill="none"
+          >
+            <path
+              d="M240 30 L450 240 L240 450 L30 240 Z"
+              stroke="#4B9FD4"
+              strokeWidth="1.5"
+              strokeOpacity="0.22"
+            />
+            <path
+              d="M240 100 L380 240 L240 380 L100 240 Z"
+              stroke="#4B9FD4"
+              strokeWidth="1.5"
+              strokeOpacity="0.17"
+            />
+          </svg>
+          {/* Row 3 diamonds - left side */}
+          <svg
+            className="absolute bottom-[8%] left-[6%]"
+            width="400"
+            height="400"
+            viewBox="0 0 400 400"
+            fill="none"
+          >
+            <path
+              d="M200 25 L375 200 L200 375 L25 200 Z"
+              stroke="#4B9FD4"
+              strokeWidth="1.5"
+              strokeOpacity="0.20"
+            />
+          </svg>
+        </div>
+
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12 lg:px-20">
           {/* First feature row */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
